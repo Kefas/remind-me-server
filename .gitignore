@@ -6,7 +6,6 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 /vendor
-/bin
 # Ignore bundler config.
 /.bundle
 
