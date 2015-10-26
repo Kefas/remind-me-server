@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   resources :beacons
   resources :users
 
+  post 'users/login'  => 'users#login'
+  post 'users/logout' => 'users#logout'
+
   # Example resource route with options:
   #   resources :products do
   #     member do
