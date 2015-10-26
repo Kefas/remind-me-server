@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   # POST users#create /users(.format)
   def create
     @user = User.new(user_params)
-    debugger
     respond_to do |format|
       if @user.save
         format.json { render json: @user, status: :created, location: @post}
