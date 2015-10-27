@@ -38,6 +38,30 @@ class UsersController < ApplicationController
     end
   end
 
+  #GET /users/[:id]
+  def show
+    @user = User.find(params[:id])
+    respond_to do |format|
+      if(@user.nil?)
+        format.json { render json: @user, status: :not_found }
+      else
+        format.json { render json: @user, status: :ok }
+      end
+    end
+  end
+
+  #GET /users
+  def index
+    @users = User.all
+    respond_to do |format|
+      if(@user.nil?)
+        format.json { render json: @users, status: :not_found }
+      else
+        format.json { render json: @users, status: :ok }
+      end
+    end
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     params.require(:user).permit(:mail, :password, :id)
