@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   post 'users/login'  => 'users#login'
   post 'users/logout' => 'users#logout'
 
+  get 'reminds/users/:users_id' => 'reminds#show_users_all'
+  get 'reminds/beacons/:beacons_id' => 'reminds#show_beacons_all'
+
   # Example resource route with options:
   #   resources :products do
   #     member do

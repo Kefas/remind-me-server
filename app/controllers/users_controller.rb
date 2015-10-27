@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  #registation
+  #registration
 
   # POST users#create /users(.format)
   def create
