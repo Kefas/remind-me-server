@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     respond_to do |format|
-      if(@user.nil?)
+      if(@users.nil?)
         format.json { render json: @users, status: :not_found }
       else
         format.json { render json: @users, status: :ok }
