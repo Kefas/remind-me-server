@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025202921) do
+ActiveRecord::Schema.define(version: 20151027175543) do
 
   create_table "beacons", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20151025202921) do
     t.string   "mail",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "token",      limit: 255
   end
 
 end
