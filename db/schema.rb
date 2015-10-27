@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20151027175543) do
     t.string   "recurrence", limit: 1
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.integer  "users_id",   limit: 4
-    t.integer  "beacons_id", limit: 4
+    t.integer  "user_id",    limit: 4
+    t.integer  "beacon_id",  limit: 4
   end
 
   create_table "users", force: :cascade do |t|

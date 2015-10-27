@@ -7,8 +7,8 @@ class CreateReminds < ActiveRecord::Migration
       t.string :recurrence, limit: 1
       t.timestamps null: false
 
-      t.belongs_to :users
-      t.belongs_to :beacons
+      t.belongs_to :user
+      t.belongs_to :beacon
     end
   end
 end

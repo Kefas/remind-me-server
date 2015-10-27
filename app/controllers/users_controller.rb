@@ -60,7 +60,7 @@ class UsersController < ApplicationController
   #GET /users
   def index
     @users = User.all
-    
+
     respond_to do |format|
       if(@users.nil?)
         format.json { render json: @users, status: :not_found }
