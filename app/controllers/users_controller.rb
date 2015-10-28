@@ -19,8 +19,9 @@ class UsersController < ApplicationController
     @user = User.find_by_mail(user_params[:mail])
 
     respond_to do |format|
-      format.json { render json: { errors: { mail: ['Wrong mail'] } }, status: :not_found} unless !@user.nil?
-      if(@user.password.eql?(user_params[:password]))
+      if @user.nil?
+        format.json { render json: { errors: { mail: ['Wrong mail'] } }, status: :not_found}
+      elsif(@user.password.eql?(user_params[:password]))
         @user.token = SecureRandom.urlsafe_base64(nil, false)
         @user.save
         format.json { render json: @user, status: :ok, location: @user }
