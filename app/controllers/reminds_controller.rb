@@ -2,13 +2,13 @@ class RemindsController < ApplicationController
 
   before_action :authenticate
 
-  #POST /create/reminds
+  #POST /reminds
   def create
     @remind = Remind.new(remind_params)
     @user.reminds << @remind
     respond_to do |format|
       if(@user.save)
-        format.json { render json: @remind, status: :create, location: @remind }
+        format.json { render json: @remind, status: :created }
       else
         format.json { render json: @remind.errors, status: :unprocessable_entity }
       end
