@@ -41,7 +41,6 @@ class RemindsController < ApplicationController
 
   #GET /reminds/beacons/[:beacon_id]
   def show_beacons_all
-    # @reminds = Remind.where(beacon_id: params[:beacon_id]) rescue nil
     @reminds = @user.reminds.where(beacon_id: params[:beacon_id]) rescue nil
     respond_to do |format|
       if(@reminds.nil?)
