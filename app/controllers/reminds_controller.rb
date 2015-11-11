@@ -51,6 +51,20 @@ class RemindsController < ApplicationController
     end
   end
 
+  #GET /reminds/beacons/active/[:beacon_id]
+  def show_active_reminds_for_beacon
+    # @reminds = @user.reminds.where{beacon_id = params[:beacon_id] & date_start < Time.now & date_end > Time.now} rescue nil
+    # @reminds = @user.reminds.where("beacon_id = #{params[:beacon_id]} AND NOW() BETWEEN ( date_start, date_end) ") rescue nil
+    @reminds = @user.reminds.where(beacon_id: params[:beacon_id]) rescue nil
+    respond_to do |format|
+      if(@reminds.nil?)
+        format.json { render json: {}, status: :no_content }
+      else
+        format.json { render json: @reminds.select{ |r| r.date_start < Time.now && r.date_end > Time.now && r.canceled != true }, status: :ok }
+      end
+    end
+  end
+
   #PUT /reminds/[:id]
   def update
     @remind = Remind.find(params[:id]) rescue nil
@@ -87,7 +101,7 @@ class RemindsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def remind_params
-    params.require(:remind).permit(:user_id, :beacon_id, :id, :content, :date_start, :date_end, :recurrence)
+    params.require(:remind).permit(:user_id, :beacon_id, :id, :content, :date_start, :date_end, :recurrence, :canceled)
   end
 
   def authenticate

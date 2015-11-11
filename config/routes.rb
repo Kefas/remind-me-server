@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   get 'reminds/users/:user_id' => 'reminds#show_users_all'
   get 'reminds/beacons/:beacon_id' => 'reminds#show_beacons_all'
+  get 'reminds/beacons/active/:beacon_id'  => 'reminds#show_active_reminds_for_beacon'
 
   # Example resource route with options:
   #   resources :products do
