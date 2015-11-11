@@ -14,6 +14,51 @@ class BeaconsController < ApplicationController
     end
   end
 
+  #GET /beacons
+  def index
+    respond_to do |format|
+        format.json { render json: @user.beacons, status: :created}
+    end
+  end
+
+  #GET /beacons/[:id]
+  def show
+    @beacon = @user.beacons.find(params[:id]) rescue nil
+    respond_to do |format|
+      if @beacon.nil?
+        format.json { render json: @beacon, status: :no_content}
+      else
+        format.json { render json: @beacon, status: :ok}
+      end
+    end
+  end
+
+  #PUT /beacons/[:id]
+  def update
+    @beacon = @user.beacons.find(params[:id]) rescue nil
+    respond_to do |format|
+      if @beacon.nil?
+        format.json { render json: @beacon, status: :not_found}
+      else
+        @beacon.update_attributes(beacon_params)
+        format.json { render json: @beacon, status: :ok}
+      end
+    end
+  end
+
+  #DELETE /beacons/[:id]
+  def destroy
+    @beacon = @user.beacons.find(params[:id]) rescue nil
+    respond_to do |format|
+      if @beacon.nil?
+        format.json { render json: @beacon, status: :not_found}
+      else
+        @beacon.destroy
+        format.json { render json: {}, status: :ok}
+      end
+    end
+  end
+
   private
 
   # Never trust parameters from the scary internet, only allow the white list through.

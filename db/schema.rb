@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151111114245) do
+ActiveRecord::Schema.define(version: 20151111130013) do
 
   create_table "beacons", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20151111114245) do
     t.datetime "updated_at",              null: false
     t.integer  "user_id",    limit: 4
     t.integer  "beacon_id",  limit: 4
+    t.boolean  "canceled"
   end
 
   create_table "users", force: :cascade do |t|
